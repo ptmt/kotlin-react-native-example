@@ -1,0 +1,3 @@
+rootProject.name = 'kotlinchat'
+
+include ':app'
