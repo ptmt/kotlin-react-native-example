@@ -21,3 +21,5 @@ external val Button: RClass<ButtonProps>
 external object AppRegistry {
   fun registerComponent(appKey: String, getComponentFunc: () -> Any)
 }
+
+external val NativeModules: dynamic

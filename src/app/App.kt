@@ -20,8 +20,11 @@ val currentUser = object {
 
 class App: RComponent<RProps, AppState>() {
     override fun AppState.init() {
-      messages = generateMessages()
-      console.log(messages)
+      // TODO: is there any way to handle Promises nicer? like that https://github.com/mplatvoet/kovenant
+      generateMessages(5).then { m: Array<Message> ->
+        console.log("generatedMessages", m)
+        messages = m
+      }
     }
     private fun _onInputTextChanged(s: String) {
       console.log("_onInputTextChanged:", s)
@@ -33,12 +36,6 @@ class App: RComponent<RProps, AppState>() {
         messages = messages.reversedArray().plus(newMessage).reversedArray()
       }
     }
-    /* private fun renderSend(props: dynamic) {
-      console.log("renderSend", props)
-      val onSend: dynamic = props.onSend
-      val text: String = props.text
-      sendButton(props)
-    } */
     override fun RBuilder.render() {
         View {
           attrs.style = object {
